@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
-import '../presentation/screens/home_screen.dart';
+import '../presentation/screens/product_catalog_screen.dart';
 
 class AppRouter {
   final GoRouter config = GoRouter(
@@ -8,7 +8,7 @@ class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const HomeScreen(),
+        builder: (context, state) => const ProductCatalogScreen(),
       ),
     ],
   );
