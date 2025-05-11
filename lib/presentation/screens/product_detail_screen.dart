@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../domain/entities/product_entity.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../providers/cart_provider.dart';
+import '../../../data/models/cart_item_model.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final ProductEntity product;
@@ -63,8 +66,31 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             const Text("Customer Reviews", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             _buildMockReviews(),
+            Consumer(
+  builder: (context, ref, _) {
+    return ElevatedButton(
+      onPressed: () {
+        final cartItem = CartItemModel(
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          imageUrl: product.imageUrl,
+          variant: selectedVariant ?? '',
+          quantity: 1,
+        );
+        ref.read(cartProvider.notifier).addToCart(cartItem);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Added to cart')),
+        );
+      },
+      child: const Text('Add to Cart'),
+    );
+  },
+),
+
           ],
         ),
+        
       ),
     );
   }
