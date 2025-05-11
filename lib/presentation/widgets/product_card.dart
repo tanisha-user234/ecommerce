@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../screens/product_detail_screen.dart';
 import '../../../domain/entities/product_entity.dart';
 
 class ProductCard extends StatelessWidget {
@@ -7,22 +8,30 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 3,
-      margin: const EdgeInsets.all(8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.network(product.imageUrl, height: 100, width: double.infinity, fit: BoxFit.cover),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text(product.name, style: const TextStyle(fontWeight: FontWeight.bold)),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Text("₹${product.price.toStringAsFixed(2)}"),
-          ),
-        ],
+    return GestureDetector(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => ProductDetailScreen(product: product),
+        ),
+      ),
+      child: Card(
+        elevation: 3,
+        margin: const EdgeInsets.all(8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.network(product.imageUrl, height: 100, width: double.infinity, fit: BoxFit.cover),
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Text(product.name, style: const TextStyle(fontWeight: FontWeight.bold)),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Text("₹${product.price.toStringAsFixed(2)}"),
+            ),
+          ],
+        ),
       ),
     );
   }
