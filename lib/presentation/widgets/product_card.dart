@@ -10,11 +10,15 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => ProductDetailScreen(product: product),
-        ),
-      ),
+  context,
+  PageRouteBuilder(
+    pageBuilder: (_, __, ___) => ProductDetailScreen(product: product),
+    transitionsBuilder: (_, animation, __, child) {
+      return FadeTransition(opacity: animation, child: child);
+    },
+    transitionDuration: const Duration(milliseconds: 400),
+  ),
+),
       child: Card(
         elevation: 3,
         margin: const EdgeInsets.all(8),
