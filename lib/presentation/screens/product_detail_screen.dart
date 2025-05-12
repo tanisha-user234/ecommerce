@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../domain/entities/product_entity.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/cart_provider.dart';
@@ -35,7 +36,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           children: [
             // Image gallery
             Center(
-              child: Image.network(product.imageUrl, height: 200),
+              child: product.imageUrl.startsWith('assets/')
+    ? Image.asset(product.imageUrl, height: 100, width: double.infinity, fit: BoxFit.cover)
+    : Text("Image not available", style: TextStyle(color: Colors.red)),
             ),
             const SizedBox(height: 16),
             Text(product.name, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
@@ -84,9 +87,17 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         );
       },
       child: const Text('Add to Cart'),
+
     );
   },
 ),
+ const SizedBox(height: 10),
+        OutlinedButton.icon(
+          icon: const Icon(Icons.shopping_cart),
+          label: const Text('Go to Cart'),
+          onPressed: () {
+            context.go('/cart');
+          },),
 
           ],
         ),

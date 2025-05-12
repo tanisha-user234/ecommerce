@@ -25,7 +25,9 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(product.imageUrl, height: 100, width: double.infinity, fit: BoxFit.cover),
+            product.imageUrl.startsWith('assets/')
+    ? Image.asset(product.imageUrl, height: 100, width: double.infinity, fit: BoxFit.cover)
+    : Text('Image not available', style: TextStyle(color: Colors.red)),
             Padding(
               padding: const EdgeInsets.all(8),
               child: Text(product.name, style: const TextStyle(fontWeight: FontWeight.bold)),

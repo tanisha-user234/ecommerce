@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
@@ -19,7 +20,7 @@ class PaymentScreen extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/checkout/confirm');
+              context.go('/checkout/confirm');
             },
             child: const Text('Next: Confirm Order'),
           )

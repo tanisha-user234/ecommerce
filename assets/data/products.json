@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "name": "Cotton T-Shirt",
+    "description": "Soft and comfortable t-shirt",
+    "price": 299.99,
+    "imageUrl": "assets/images/ecoma.jpeg",
+    "categories": ["Clothing", "Men"],
+    "rating": 4.5,
+    "variants": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "2",
+    "name": "Sneakers",
+    "description": "Durable running sneakers",
+    "price": 1099.50,
+    "imageUrl": "assets/images/ecomb.jpeg",
+    "categories": ["Footwear", "Unisex"],
+    "rating": 4.2,
+    "variants": ["6", "7", "8", "9"]
+  }
+]

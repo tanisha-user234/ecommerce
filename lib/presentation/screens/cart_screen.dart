@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import '../providers/cart_provider.dart';
 
 class CartScreen extends ConsumerWidget {
@@ -22,7 +23,9 @@ class CartScreen extends ConsumerWidget {
                     itemBuilder: (context, index) {
                       final item = cartItems[index];
                       return ListTile(
-                        leading: Image.network(item.imageUrl, width: 50),
+                        leading: item.imageUrl.startsWith('assets/')
+    ? Image.asset(item.imageUrl, height: 60, width: 60, fit: BoxFit.cover)
+    : const Icon(Icons.image_not_supported),
                         title: Text(item.name),
                         subtitle: Text("₹${item.price} × ${item.quantity} (${item.variant})"),
                         trailing: IconButton(
@@ -39,7 +42,8 @@ class CartScreen extends ConsumerWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/checkout');
+                    context.go('/checkout/shipping');
+                    // Navigator.pushNamed(context, '/checkout');
                   },
                   child: const Text('Proceed to Checkout'),
                 )

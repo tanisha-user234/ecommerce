@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 class ShippingScreen extends StatelessWidget {
   const ShippingScreen({super.key});
 
@@ -19,7 +20,7 @@ class ShippingScreen extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/checkout/payment');
+                context.go('/checkout/payment');
               },
               child: const Text('Next: Payment'),
             )
