@@ -28,7 +28,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     final product = widget.product;
 
     return Scaffold(
-      appBar: AppBar(title: Text(product.name)),
+            appBar: AppBar(
+        title:  Text(product.name),
+        backgroundColor: Colors.deepPurple,
+        centerTitle: true,
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
